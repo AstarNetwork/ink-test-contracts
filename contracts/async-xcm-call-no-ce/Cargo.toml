@@ -4,7 +4,7 @@ version = "0.1.0"
 authors = ["Stake Technologies <devops@stake.co.jp>"]
 edition = "2021"
 homepage = "https://astar.network"
-repository = "https://github.com/AstarNetwork/Astar"
+repository = "https://github.com/AstarNetwork/ink-test-contracts"
 
 [dependencies]
 ink = { version = "~4.2.0", default-features = false, features = ["call-runtime"] }

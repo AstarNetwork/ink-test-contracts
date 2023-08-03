@@ -1,12 +1,13 @@
 [package]
 name = "call_xvm_payable"
 version = "0.1.0"
-authors = ["[your_name] <[your_email]>"]
+authors = ["Stake Technologies <devops@stake.co.jp>"]
 edition = "2021"
+homepage = "https://astar.network"
+repository = "https://github.com/AstarNetwork/ink-test-contracts"
 
 [dependencies]
 ink = { version = "4.2.0", default-features = false }
-
 scale = { package = "parity-scale-codec", version = "3", default-features = false, features = ["derive"] }
 scale-info = { version = "2.6", default-features = false, features = ["derive"], optional = true }
 
