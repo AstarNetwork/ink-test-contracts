@@ -1,5 +1,5 @@
 [package]
-name = "async_xcm_call_contract"
+name = "payable"
 version = "0.1.0"
 authors = ["Stake Technologies <devops@stake.co.jp>"]
 edition = "2021"
@@ -7,10 +7,12 @@ homepage = "https://astar.network"
 repository = "https://github.com/AstarNetwork/ink-test-contracts"
 
 [dependencies]
-ink = { version = "~4.2.0", default-features = false, features = ["call-runtime"] }
+ink = { version = "4.2.0", default-features = false }
 scale = { package = "parity-scale-codec", version = "3", default-features = false, features = ["derive"] }
 scale-info = { version = "2.6", default-features = false, features = ["derive"], optional = true }
-xcm = { git = "https://github.com/paritytech/polkadot", branch = "release-v0.9.39", default-features = false }
+
+[dev-dependencies]
+ink_e2e = "4.2.0"
 
 [lib]
 path = "lib.rs"
@@ -18,14 +20,9 @@ path = "lib.rs"
 [features]
 default = ["std"]
 std = [
-	"ink/std",
-	"scale/std",
-	"scale-info/std",
-	"xcm/std",
+    "ink/std",
+    "scale/std",
+    "scale-info/std",
 ]
 ink-as-dependency = []
-
-[profile.release]
-overflow-checks = false
-
-[workspace]
+e2e-tests = []
