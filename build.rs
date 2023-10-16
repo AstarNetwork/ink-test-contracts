@@ -116,11 +116,16 @@ impl BuildConfig {
             )
             .unwrap();
 
-            // copy metadata
+            // copy metadata & .contract file
             if let Some(res) = build.metadata_result {
                 fs::copy(
                     res.dest_metadata,
                     self.fixtures_dir.join(format!("{contract}.json")),
+                )
+                .unwrap();
+                fs::copy(
+                    res.dest_bundle,
+                    self.fixtures_dir.join(format!("{contract}.contract")),
                 )
                 .unwrap();
             }
