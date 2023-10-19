@@ -43,22 +43,22 @@ mod call_xvm_payable {
             Self {}
         }
 
-        #[ink(message, payable, selector = 42)]
+        #[ink(message, selector = 42)]
         pub fn to_h160(&self, account_id: AccountId) -> Option<H160> {
             UAExtension::to_h160(account_id)
         }
 
-        #[ink(message, payable, selector = 43)]
+        #[ink(message, selector = 43)]
         pub fn to_h160_or_default(&self, account_id: AccountId) -> H160 {
             UAExtension::to_h160_or_default(account_id)
         }
 
-        #[ink(message, payable, selector = 44)]
+        #[ink(message, selector = 44)]
         pub fn to_account_id(&self, evm_address: H160) -> Option<AccountId> {
             UAExtension::to_account_id(evm_address)
         }
 
-        #[ink(message, payable, selector = 45)]
+        #[ink(message, selector = 45)]
         pub fn to_account_id_or_default(&self, evm_address: H160) -> AccountId {
             UAExtension::to_account_id_or_default(evm_address)
         }
