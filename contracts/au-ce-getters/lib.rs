@@ -49,7 +49,7 @@ mod call_xvm_payable {
         }
 
         #[ink(message, selector = 43)]
-        pub fn to_h160_or_default(&self, account_id: AccountId) -> H160 {
+        pub fn to_h160_or_default(&self, account_id: AccountId) -> (H160, bool) {
             UAExtension::to_h160_or_default(account_id)
         }
 
@@ -59,7 +59,7 @@ mod call_xvm_payable {
         }
 
         #[ink(message, selector = 45)]
-        pub fn to_account_id_or_default(&self, evm_address: H160) -> AccountId {
+        pub fn to_account_id_or_default(&self, evm_address: H160) -> (AccountId, bool) {
             UAExtension::to_account_id_or_default(evm_address)
         }
     }

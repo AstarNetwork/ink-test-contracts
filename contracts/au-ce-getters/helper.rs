@@ -40,13 +40,13 @@ impl<E: Environment, const ID: u16> UAExtension<E, ID> {
             .call(&(account_id))
     }
 
-    pub fn to_h160_or_default(account_id: E::AccountId) -> H160 {
+    pub fn to_h160_or_default(account_id: E::AccountId) -> (H160, bool) {
         let func_id: u32 = Self::get_func_id(Command::GetEvmAddressOrDefault.into());
 
         // fn(AccountId) -> H160
         ::ink::env::chain_extension::ChainExtensionMethod::build(func_id)
             .input::<E::AccountId>()
-            .output::<H160, false>()
+            .output::<(H160, bool), false>()
             .ignore_error_code()
             .call(&(account_id))
     }
@@ -62,13 +62,13 @@ impl<E: Environment, const ID: u16> UAExtension<E, ID> {
             .call(&(evm_address))
     }
 
-    pub fn to_account_id_or_default(evm_address: H160) -> E::AccountId {
+    pub fn to_account_id_or_default(evm_address: H160) -> (E::AccountId, bool) {
         let func_id: u32 = Self::get_func_id(Command::GetNativeAddressOrDefault.into());
 
         // fn(H160) -> AccountId
         ::ink::env::chain_extension::ChainExtensionMethod::build(func_id)
             .input::<H160>()
-            .output::<E::AccountId, false>()
+            .output::<(E::AccountId, bool), false>()
             .ignore_error_code()
             .call(&(evm_address))
     }
