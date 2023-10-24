@@ -24,7 +24,7 @@
 
 mod helper;
 
-use helper::UAExtension as _UAExtension;
+use helper::{UAExtension as _UAExtension, UnifiedAddress};
 use ink::env::DefaultEnvironment;
 use sp_core::H160;
 
@@ -49,7 +49,7 @@ mod call_xvm_payable {
         }
 
         #[ink(message, selector = 43)]
-        pub fn to_h160_or_default(&self, account_id: AccountId) -> (H160, bool) {
+        pub fn to_h160_or_default(&self, account_id: AccountId) -> UnifiedAddress<H160> {
             UAExtension::to_h160_or_default(account_id)
         }
 
@@ -59,7 +59,7 @@ mod call_xvm_payable {
         }
 
         #[ink(message, selector = 45)]
-        pub fn to_account_id_or_default(&self, evm_address: H160) -> (AccountId, bool) {
+        pub fn to_account_id_or_default(&self, evm_address: H160) -> UnifiedAddress<AccountId> {
             UAExtension::to_account_id_or_default(evm_address)
         }
     }

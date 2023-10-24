@@ -19,7 +19,7 @@
 use core::marker::PhantomData;
 use ink::env::{DefaultEnvironment, Environment};
 use sp_core::H160;
-pub use unified_accounts_chain_extension_types::Command;
+pub use unified_accounts_chain_extension_types::{Command, UnifiedAddress};
 
 /// UA Extension Interface
 pub struct UAExtension<E = DefaultEnvironment, const ID: u16 = 03>(PhantomData<E>);
@@ -40,13 +40,13 @@ impl<E: Environment, const ID: u16> UAExtension<E, ID> {
             .call(&(account_id))
     }
 
-    pub fn to_h160_or_default(account_id: E::AccountId) -> (H160, bool) {
+    pub fn to_h160_or_default(account_id: E::AccountId) -> UnifiedAddress<H160> {
         let func_id: u32 = Self::get_func_id(Command::GetEvmAddressOrDefault.into());
 
         // fn(AccountId) -> H160
         ::ink::env::chain_extension::ChainExtensionMethod::build(func_id)
             .input::<E::AccountId>()
-            .output::<(H160, bool), false>()
+            .output::<UnifiedAddress<H160>, false>()
             .ignore_error_code()
             .call(&(account_id))
     }
@@ -62,13 +62,13 @@ impl<E: Environment, const ID: u16> UAExtension<E, ID> {
             .call(&(evm_address))
     }
 
-    pub fn to_account_id_or_default(evm_address: H160) -> (E::AccountId, bool) {
+    pub fn to_account_id_or_default(evm_address: H160) -> UnifiedAddress<E::AccountId> {
         let func_id: u32 = Self::get_func_id(Command::GetNativeAddressOrDefault.into());
 
         // fn(H160) -> AccountId
         ::ink::env::chain_extension::ChainExtensionMethod::build(func_id)
             .input::<H160>()
-            .output::<(E::AccountId, bool), false>()
+            .output::<UnifiedAddress<E::AccountId>, false>()
             .ignore_error_code()
             .call(&(evm_address))
     }
