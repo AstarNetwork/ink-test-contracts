@@ -16,11 +16,11 @@
 // You should have received a copy of the GNU General Public License
 // along with Astar. If not, see <http://www.gnu.org/licenses/>.
 
-use num_enum::{IntoPrimitive, TryFromPrimitive};
 use core::marker::PhantomData;
 use ink::env::{DefaultEnvironment, Environment};
 use scale::{Encode, Decode};
 use ink::prelude::vec::Vec;
+use assets_chain_extension_types::Command;
 
 /// Pallet Assets Extension Interface
 pub struct AssetsExtension<E = DefaultEnvironment, const ID: u16 = 02>(PhantomData<E>);
@@ -238,21 +238,4 @@ impl From<scale::Error> for AssetsError {
     fn from(_: scale::Error) -> Self {
         AssetsError::InvalidScaleEncoding
     }
-}
-
-#[repr(u16)]
-#[derive(TryFromPrimitive, IntoPrimitive, Decode, Encode)]
-pub enum Command {
-    Transfer = 0,
-    Mint = 1,
-    Burn = 2,
-    ApproveTransfer = 4,
-    TransferApproved = 5,
-    BalanceOf = 6,
-    TotalSupply = 7,
-    Allowance = 8,
-    MetadataName = 9,
-    MetadataSymbol = 10,
-    MetadataDecimals = 11,
-    MinimumBalance = 12,
 }

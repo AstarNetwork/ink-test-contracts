@@ -14,7 +14,9 @@ scale = { package = "parity-scale-codec", version = "3", default-features = fals
 scale-info = { version = "2.6", default-features = false, features = [
     "derive",
 ], optional = true }
-num_enum = { version = "0.5.3", default-features = false }
+assets-chain-extension-types = { git = "https://github.com/AstarNetwork/Astar", branch = "feat/pallet-assets-ce", version = "0.1.0", default-features = false }
+sp-io = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.43", default-features = false, features = ["disable_panic_handler", "disable_oom", "disable_allocator"] }
+
 [dev-dependencies]
 ink_e2e = "4.2.0"
 
@@ -24,10 +26,11 @@ path = "lib.rs"
 [features]
 default = ["std"]
 std = [
-    "num_enum/std",
     "ink/std",
     "scale/std",
     "scale-info/std",
+    "assets-chain-extension-types/std",
+    "sp-io/std",
 ]
 ink-as-dependency = []
 e2e-tests = []

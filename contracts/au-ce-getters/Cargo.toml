@@ -15,7 +15,7 @@ scale = { package = "parity-scale-codec", version = "3", default-features = fals
 scale-info = { version = "2.6", default-features = false, features = [
     "derive",
 ], optional = true }
-unified-accounts-chain-extension-types = { git = "https://github.com/AstarNetwork/Astar", branch = "feat/au-storage-fee-and-ce", version = "0.1.0", default-features = false }
+unified-accounts-chain-extension-types = { git = "https://github.com/AstarNetwork/Astar", version = "0.1.0", default-features = false }
 
 # substrate
 sp-core = { version = "24.0.0", default-features = false }
